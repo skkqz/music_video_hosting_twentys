@@ -1,0 +1,5 @@
+Если Alembic ещё не инициализирован, выполни команду:
+alembic init alembic
+
+Примени миграцию к базе данных:
+alembic upgrade head
