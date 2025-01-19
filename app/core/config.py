@@ -31,24 +31,24 @@ class Settings(BaseSettings):
         env_file=os.path.abspath(os.path.join('.env'))
     )
 
+    @staticmethod
+    def get_db_url():
+        """
+        Генерирует URL для подключения к PostgreSQL базе данных.
+
+        :return: Строка с URL для подключения к базе данных.
+        """
+        return (f"postgresql+asyncpg://{settings.DB_USER}:{settings.DB_PASSWORD}@"
+                f"{settings.DB_HOST}:{settings.DB_PORT}/{settings.DB_NAME}")
+
+    @staticmethod
+    def get_auth_data():
+        """
+        Возвращает данные для аутентификации, необходимые для работы с JWT.
+
+        :return: Словарь с данными для аутентификации.
+        """
+        return {'secret_key': settings.SECRET_KEY, 'algorithm': settings.ALGORITHM}
+
 
 settings = Settings()
-
-
-def get_db_url():
-    """
-    Генерирует URL для подключения к PostgreSQL базе данных.
-
-    :return: Строка с URL для подключения к базе данных.
-    """
-    return (f"postgresql+asyncpg://{settings.DB_USER}:{settings.DB_PASSWORD}@"
-            f"{settings.DB_HOST}:{settings.DB_PORT}/{settings.DB_NAME}")
-
-
-def get_auth_data():
-    """
-    Возвращает данные для аутентификации, необходимые для работы с JWT.
-
-    :return: Словарь с данными для аутентификации.
-    """
-    return {'secret_key': settings.SECRET_KEY, 'algorithm': settings.ALGORITHM}
