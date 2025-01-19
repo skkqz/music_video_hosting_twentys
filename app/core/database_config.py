@@ -1,6 +1,5 @@
 import uuid
 from datetime import datetime
-from os import write
 
 from sqlalchemy import func
 from sqlalchemy.dialects.postgresql import UUID
