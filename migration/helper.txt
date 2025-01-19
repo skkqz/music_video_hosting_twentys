@@ -1,5 +1,8 @@
 Если Alembic ещё не инициализирован, выполни команду:
 alembic init alembic
 
+Создание миграций
+alembic revision --autogenerate -m "Add users table"
+
 Примени миграцию к базе данных:
 alembic upgrade head
