@@ -12,14 +12,14 @@ from sqlalchemy.ext.asyncio import async_engine_from_config
 
 from alembic import context
 
-from app.core.database import Base, DATABASE_URL
+from app.core.database import Base, settings
 from app.modules.user.models import User
 
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
 config = context.config
-config.set_main_option("sqlalchemy.url", DATABASE_URL)
+config.set_main_option("sqlalchemy.url", settings.get_db_url())
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
